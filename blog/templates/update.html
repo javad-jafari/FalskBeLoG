@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<style>
+    html, body, .container-table {
+        height: 100%;
+    }
+    .container-table {
+        display: table;
+    }
+    .vertical-center-row {
+        display: table-cell;
+        vertical-align: middle;
+    }
+</style>
+{% endblock css %}
+
+
+{% block title %}Login Form{% endblock title %}
+
+
+
+{% block content %}
+
+<h1 class="text-center">Post Form</h1>
+
+
+<div class="container w-50 container-table jumbotron">
+    <div class="row vertical-center-row">
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        
+        {{form.title.label(class='form-control-label')}}
+        {{form.title(class='form-control')}}
+
+        {{form.content.label(class='form-control-label')}}
+        {{form.content(class='form-control')}}
+
+        
+
+        <input class="m-5 p-1 btn btn-info" type="submit" value="update">
+        <a href='{{url_for("update_profile")}}' class="btn btn-secondary">back to profile ?</a>
+
+    </form>
+</div>
+
+</div>
+{% endblock content %}

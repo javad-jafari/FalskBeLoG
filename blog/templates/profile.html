@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+<style>
+    html, body, .container-table {
+        height: 100%;
+    }
+    .container-table {
+        display: table;
+    }
+    .vertical-center-row {
+        display: table-cell;
+        vertical-align: middle;
+    }
+</style>
+{% endblock css %}
+{% block title %}Profile{% endblock title %}
+
+
+
+{% block content %}
+
+
+
+<div class="container h-50 w-50 container-table jumbotron">
+    <div class="row vertical-center-row">
+        usename:<p>{{current_user.username}}</p>
+        email:<p>{{current_user.email}}</p>
+        <p>
+        <a href='{{url_for("create_post")}}' class="btn btn-secondary">create new post</a>
+        </p>
+    </div>
+</div>
+
+
+<div class="container w-50 h-25 container-table jumbotron">
+    <div class="row vertical-center-row">
+<form action="" method="post">
+
+    
+    {{ form.csrf_token }}
+    <p>
+
+    <p>{{form.username.label}}</p>
+    {{form.username}}
+    {% if form.username.errors %}       
+    {% for error in form.username.errors %}
+        <p class='alert  alert-danger'>{{ error }}</p>
+    {% endfor %}        
+    {% endif %}
+    </p>
+
+    <p>
+    <p>{{form.email.label}}</p>
+    {{form.email}}
+    {% if form.email.errors %}       
+    {% for error in form.email.errors %}
+        <p class='alert  alert-danger'>{{ error }}</p>
+    {% endfor %}        
+    {% endif %}
+    </p>
+    <input type="submit" value="update">
+</form>
+
+</div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}home{% endblock title %}
+
+
+{% block content %}
+
+<div class="jumbotron">
+    {% if current_user == post.user %}
+    <a href='{{url_for("post_update", post_id=post.id)}}' class="btn btn-info">update post</a>
+    <a href='{{url_for("post_delete", post_id=post.id)}}' class="btn btn-danger">delete post</a>
+    {% endif %}
+    <div class="card">
+        <h3>{{post.title}}</h3>
+        <p>{{post.content}}</p>
+        <small>{{post.date}}</small>
+        <small>{{post.user.username}}</small>
+    </div> 
+</div>
+{% endblock content %}

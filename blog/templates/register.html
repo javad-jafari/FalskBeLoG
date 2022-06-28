@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+<style>
+    html, body, .container-table {
+        height: 100%;
+    }
+    .container-table {
+        display: table;
+    }
+    .vertical-center-row {
+        display: table-cell;
+        vertical-align: middle;
+    }
+</style>
+{% endblock css %}
+{% block title %}Register Form{% endblock title %}
+
+
+
+{% block content %}
+
+<h1 class="text-center">Register Form</h1>
+
+
+<div class="container w-50 container-table jumbotron">
+    <div class="row vertical-center-row">
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        {{form.username.label(class='form-control-label')}}
+        {{form.username(class='form-control')}}
+        {% if form.username.errors %}       
+        {% for error in form.username.errors %}
+            <p class='alert  alert-danger'>{{ error }}</p>
+        {% endfor %}        
+        {% endif %}
+
+        {{form.email.label(class='form-control-label')}}
+        {{form.email(class='form-control')}}
+        {% if form.email.errors %}       
+        {% for error in form.email.errors %}
+            <p class='alert  alert-danger'>{{ error }}</p>
+        {% endfor %}        
+        {% endif %}
+
+        {{form.password.label(class='form-control-label')}}
+        {{form.password(class='form-control')}}
+        {% if form.password.errors %}       
+        {% for error in form.password.errors %}
+            <p class='alert  alert-danger'>{{ error }}</p>
+        {% endfor %}        
+        {% endif %}
+
+        {{form.confirm_password.label(class='form-control-label')}}
+        {{form.confirm_password(class='form-control')}}
+        {% if form.confirm_password.errors %}       
+        {% for error in form.confirm_password.errors %}
+            <p class='alert  alert-danger'>{{ error }}</p>
+        {% endfor %}        
+        {% endif %}
+
+
+        <input class="m-5 p-1 btn btn-info" type="submit" value="Register">
+        <a href='{{url_for("login")}}' class="btn btn-secondary">Have you a account?</a>
+    </form>
+
+</div>
+</div>
+{% endblock content %}
